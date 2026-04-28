@@ -11,7 +11,8 @@ export const useKeyboardBindings = () => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.repeat) return; // Ignore hold repetition
       const key = e.key.toUpperCase();
-      const note = PIANO_KEYS.find(k => k.key === key);
+      const code = e.code.toUpperCase();
+      const note = PIANO_KEYS.find(k => k.key === key || k.key === code);
       
       if (note && !activeNotes.has(note.name)) {
         setActiveNotes(prev => {
@@ -26,7 +27,8 @@ export const useKeyboardBindings = () => {
 
     const handleKeyUp = (e: KeyboardEvent) => {
       const key = e.key.toUpperCase();
-      const note = PIANO_KEYS.find(k => k.key === key);
+      const code = e.code.toUpperCase();
+      const note = PIANO_KEYS.find(k => k.key === key || k.key === code);
       
       if (note) {
         setActiveNotes(prev => {
