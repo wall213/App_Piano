@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { PIANO_KEYS, type Note } from '../types/piano.types';
+import { PIANO_KEYS} from '../types/piano.types';
 import { useAudioEngine } from './useAudioEngine';
 
 export const useKeyboardBindings = () => {

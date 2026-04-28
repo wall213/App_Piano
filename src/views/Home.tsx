@@ -27,7 +27,7 @@ const Home: React.FC = () => {
       {/* Keyboard Controls Preview */}
       <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 mb-12">
         <div className="flex gap-2 mb-6 justify-center">
-          {['A', 'S', 'D', 'F', 'G', 'H', 'J'].map((key) => (
+          {['A', 'S', 'D', 'F', 'G', 'H', 'J','K','L'].map((key) => (
             <div 
               key={key} 
               className="w-12 h-12 flex items-center justify-center border border-gray-300 rounded-md text-sm text-black font-medium"
@@ -49,15 +49,6 @@ const Home: React.FC = () => {
         EMPEZAR A PRACTICAR <span>→</span>
       </button>
 
-      {/* Features */}
-      <div className="flex gap-12 text-xs text-piano-muted uppercase tracking-widest font-medium">
-        <div className="flex items-center gap-2">
-          <span>⏱</span> METRÓNOMO INTEGRADO
-        </div>
-        <div className="flex items-center gap-2">
-          <span>🎤</span> GRABACIÓN DE SESIÓN
-        </div>
-      </div>
     </div>
   );
 };

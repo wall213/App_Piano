@@ -22,15 +22,6 @@ const Header: React.FC = () => {
         >
           Practice
         </NavLink>
-        <span className="text-sm text-piano-muted cursor-pointer hover:text-black transition-colors duration-200">
-          Exercises
-        </span>
-        <span className="text-sm text-piano-muted cursor-pointer hover:text-black transition-colors duration-200">
-          Library
-        </span>
-        <span className="text-sm text-piano-muted cursor-pointer hover:text-black transition-colors duration-200">
-          Settings
-        </span>
       </nav>
 
       {/* User Icon */}
