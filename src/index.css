@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', sans-serif;
+  
+  --color-piano-white: #ffffff;
+  --color-piano-black: #000000;
+  --color-piano-gray: #f5f5f5;
+  --color-piano-text: #333333;
+  --color-piano-muted: #888888;
+  
+  --color-brand: #000000;
+  --color-brand-hover: #222222;
+}
+
+@layer base {
+  body {
+    @apply font-sans bg-piano-gray text-piano-text antialiased;
+  }
+}
+
+/* Custom utilities for the piano */
+@layer utilities {
+  .glass-panel {
+    @apply bg-white/80 backdrop-blur-md border border-white/20 shadow-xl;
+  }
+}
