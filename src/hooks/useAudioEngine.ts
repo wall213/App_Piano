@@ -3,30 +3,31 @@ import * as Tone from 'tone';
 
 export const useAudioEngine = () => {
   const [isLoaded, setIsLoaded] = useState(false);
-  const synthRef = useRef<Tone.PolySynth | null>(null);
+  const synthRef = useRef<Tone.Sampler | null>(null);
 
   useEffect(() => {
-    // Initialize Tone.js PolySynth (simulating a piano)
+    // Initialize Tone.js Sampler
     const initAudio = async () => {
       await Tone.start();
       
-      const synth = new Tone.PolySynth(Tone.Synth, {
-        oscillator: {
-          type: 'triangle' // Triangle wave sounds a bit closer to a keyboard than a sine wave
+      const sampler = new Tone.Sampler({
+        urls: {
+          C4: "C4.mp3",
+          "D#4": "Ds4.mp3",
+          "F#4": "Fs4.mp3",
+          A4: "A4.mp3",
         },
-        envelope: {
-          attack: 0.005,
-          decay: 0.1,
-          sustain: 0.3,
-          release: 1
-        }
+        release: 1,
+        baseUrl: "https://tonejs.github.io/audio/salamander/",
       }).toDestination();
 
-      synthRef.current = synth;
-      setIsLoaded(true);
+      Tone.loaded().then(() => {
+        setIsLoaded(true);
+      });
+
+      synthRef.current = sampler;
     };
 
-    // We only init after user interacts, so we might need to call this manually
     initAudio();
 
     return () => {
@@ -35,22 +36,22 @@ export const useAudioEngine = () => {
   }, []);
 
   const playNote = useCallback((note: string) => {
-    if (!synthRef.current) return;
+    if (!synthRef.current || !isLoaded) return;
     try {
       synthRef.current.triggerAttack(note, Tone.now());
     } catch (e) {
       console.warn("Audio Context not started yet", e);
     }
-  }, []);
+  }, [isLoaded]);
 
   const releaseNote = useCallback((note: string) => {
-    if (!synthRef.current) return;
+    if (!synthRef.current || !isLoaded) return;
     try {
       synthRef.current.triggerRelease(note, Tone.now());
     } catch (e) {
       console.warn("Audio Context not started yet", e);
     }
-  }, []);
+  }, [isLoaded]);
 
   return { isLoaded, playNote, releaseNote };
 };
