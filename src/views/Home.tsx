@@ -19,11 +19,7 @@ const Home: React.FC = () => {
         </h1>
         <p className="text-lg text-piano-muted font-light leading-relaxed">
           Tu espacio para perfeccionar cada nota. Usa las teclas de tu teclado
-          para tocar el piano virtual: las teclas de la fila central actúan como
-          tus teclas blancas.
-        </p>
-        <p className="text-lg text-piano-muted font-light leading-relaxed">
-          Utiliza las teclas desde el ShiftIzquierdo hasta la tecla 3 para tocar las notas blancas, 
+          para tocar el piano virtual.Desde el ShiftIzquierdo hasta la tecla 3 para tocar las notas blancas, 
           y las notas negras estan salteadas en orden como si fuera un piano real. 
         </p>
       </div>
@@ -31,7 +27,7 @@ const Home: React.FC = () => {
       {/* Keyboard Controls Preview */}
       <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 mb-12">
         <div className="flex gap-2 mb-6 justify-center">
-          {["A", "S", "D", "F", "G", "H", "J", "K", "L"].map((key) => (
+          {["Z", "X", "C", "V", "B", "N", "M", ",", "."].map((key) => (
             <div
               key={key}
               className="w-12 h-12 flex items-center justify-center border border-gray-300 rounded-md text-sm text-black font-medium"
