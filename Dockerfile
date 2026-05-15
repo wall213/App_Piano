@@ -1,19 +1,22 @@
 # Etapa 1: Construcción (Build)
-FROM node:20-alpine AS builder
+FROM node:22-alpine AS builder
+
+# Habilitar corepack para usar pnpm
+RUN corepack enable && corepack prepare pnpm@latest --activate
 
 WORKDIR /app
 
-# Copiamos solo los archivos de dependencias primero para aprovechar la caché de Docker
-COPY package.json package-lock.json* ./
+# Copiamos los archivos de dependencias
+COPY package.json pnpm-lock.yaml ./
 
-# Instalamos las dependencias
-RUN npm install
+# Instalamos las dependencias usando pnpm
+RUN pnpm install --frozen-lockfile
 
 # Copiamos el resto del código fuente
 COPY . .
 
 # Compilamos la aplicación (generará la carpeta 'dist')
-RUN npm run build
+RUN pnpm run build
 
 # Etapa 2: Servidor (Production)
 FROM nginx:alpine
@@ -29,3 +32,4 @@ EXPOSE 80
 
 # Arrancamos Nginx
 CMD ["nginx", "-g", "daemon off;"]
+
